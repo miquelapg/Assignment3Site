@@ -1,0 +1,33 @@
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<!--Content for the Edit Operation-->
+<div class="container"></div>
+    <div class="row">
+        <div class="offset-md-3 col-md-6">
+            <h1><%= title %></h1>
+            <form class="form" method="POST">
+                <div class="form-group">
+                    <label for="nameTextField">Movie Title</label>
+                    <input type="text" class="form-control" id="nameTextField" placeholder="Enter the Movie Title" name="Name" value="<%= Movie.Name %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="genreTextField">Genre</label>
+                    <input type="text" class="form-control" id="genreTextField" placeholder="Enter the Genre" name="Genre" value="<%= Movie.Genre%>" required>
+                </div>
+                <div class="form-group">
+                    <label for="yearTextField">Year</label>
+                    <input type="text" class="form-control" id="yearTextField" placeholder="Enter the Release Year" name="Year" value="<%= Movie.Year %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="reviewTextArea">Review</label>
+                    <textarea type="text" class="form-control" id="reviewTextArea"  placeholder="Enter your Review" name="Review" required><%= Movie.Review %></textarea>
+                </div>
+                <button class="btn btn-success" type="submit">Submit
+                <i class="fa-solid fa-check"></i></button>  
+                <button class="btn btn-warning" type="submit">Cancel
+                    <i class="fa-solid fa-ban"></i></button>  
+            </form>
+        </div>
+    </div>
+</div>
+<%- include ../Partials/footer.ejs%>

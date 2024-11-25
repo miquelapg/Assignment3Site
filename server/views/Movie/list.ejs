@@ -1,0 +1,73 @@
+<%- include ../Partials/header.ejs%>
+<%- include ../Partials/main_nav.ejs%>
+<main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1><%= title %></h1>
+            <br>
+            <% if(typeof displayName == 'string' && displayName) { %>
+            <a href="/movieslist/add" class="btn btn-success" role="button">
+                <i class="fas fa-plus-circle"></i> Add Movie
+            </a>
+            <table class="table table-bordered table-striped table-hover">
+                <tr class="d-flex">
+                    <th class="text-center col-2">Movie Title</th>
+                    <th class="text-center col-2">Genre</th>
+                    <th class="text-center col-1">Year</th>
+                    <th class="text-center col-5">Review</th>
+                </tr>
+                <% for(let count=0;count<MovieList.length;count++) { %>
+                    <tr class="d-flex">
+                        <td class="text-center col-2"><%= MovieList[count].Name %></td>
+                        <td class="text-center col-2"><%= MovieList[count].Genre %> </td>
+                        <td class="text-center col-1"><%= MovieList[count].Year %></td>
+                        <td class="col-5"><%= MovieList[count].Review %></td>
+                        <td class="text-center col-1">
+                            <a href="/movieslist/edit/<%= MovieList[count]._id%>"
+                                class="btn btn-primary btn-sm">Edit
+                            </a>
+                        </td>
+                    <!--Deletes Movie entry when user clicks OK on popup -->
+                    <td class="text-center col-1">
+                        <a href = "/movieslist" onclick = "return confirmDelete('/movieslist/delete/<%= MovieList[count]._id %>');"
+                            class="btn btn-danger btn-sm">Delete
+                    </a>
+                    </td>
+                </tr>   
+                <% } %> 
+            </table>
+            <!--Only Showing Table with no option to add, create, or delete a movie-->
+            <% } else { %>
+                <h2>Login to make changes</h2>
+                <table class="table table-bordered table-striped table-hover">
+                    <tr class="d-flex">
+                        <th class="text-center col-2">Movie Title</th>
+                        <th class="text-center col-2">Genre</th>
+                        <th class="text-center col-1">Year</th>
+                        <th class="text-center col-5">Review</th>
+                    </tr>
+                    <% for(let count=0;count<MovieList.length;count++) { %>
+                        <tr class="d-flex">
+                            <td class="text-center col-2"><%= MovieList[count].Name %></td>
+                            <td class="text-center col-2"><%= MovieList[count].Genre %> </td>
+                            <td class="text-center col-1"><%= MovieList[count].Year %></td>
+                            <td class="col-5"><%= MovieList[count].Review %></td>    
+                        </a>
+                    </tr>
+                    <% } %>
+                </table>
+                <% } %>
+        </div>
+    </div>
+</main>
+<!--Asks user to confirm deletion in a popup-->
+<script>
+    function confirmDelete(deleteLink) {
+        if (confirm('Are you sure you want delete this movie?')) {
+        window.location.href = deleteLink;
+    } else {
+    return false;
+    }
+    }
+    </script>
+<%- include ../Partials/footer.ejs%>
